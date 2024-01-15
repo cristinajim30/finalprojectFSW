@@ -11,7 +11,7 @@ services:
       - ./nginx/conf.d:/etc/nginx/conf.d
 angular:
   container_name : angular
-  build: ./frontend/usersapp
+  build: ./angular/usersapp
   restart: always
   ports:
     - 4200:4200
@@ -30,7 +30,7 @@ mysql:
 springboot:
   restart : always
   build:
-    context: ./backend/test
+    context: ./springboot/test
     dockerfile: Dockerfile
   working_dir: /springboot
   volumes:
