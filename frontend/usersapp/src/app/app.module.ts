@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { UserListComponent } from './component/user-list/user-list.component';
 import { UserFormComponent } from './component/user-form/user-form.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, withFetch } from '@angular/common/http';
 import { UserServiceService } from './services/user-service.service';
 
 @NgModule({
