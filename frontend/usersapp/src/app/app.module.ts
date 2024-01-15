@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { UserListComponent } from './component/user-list/user-list.component';
 import { UserFormComponent } from './component/user-form/user-form.component';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UserServiceService } from './services/user-service.service';
 
 @NgModule({
   declarations: [
@@ -16,10 +18,12 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [
     provideClientHydration()
+    //UserServiceService
   ],
   bootstrap: [AppComponent]
 })
