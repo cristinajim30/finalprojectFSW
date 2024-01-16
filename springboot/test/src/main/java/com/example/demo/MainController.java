@@ -24,6 +24,7 @@ public class MainController {
 
 	@GetMapping("/users")
 	public @ResponseBody Iterable<User> getAllUsers() {
+		System.out.println("-----------BACK-----------metodo get users");
 		return userRepository.findAll();
 	}
 }

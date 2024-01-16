@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './typeuser.component.css'
 })
 export class TypeuserComponent {
-
+  title = 'Welcome to Type User List Options';
 }

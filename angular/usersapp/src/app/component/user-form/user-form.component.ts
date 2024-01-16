@@ -16,25 +16,29 @@ export class UserFormComponent {
   typeUser: TypeUser;
   validName=true
   validEmail=true
-  userTypeList: string[] = [];
-  usertypeselected: string = this.userTypeList[0];
+  userTypeList: TypeUser[] = [];
+  usertypeselected: TypeUser = this.userTypeList[0];
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService, private userTypeService: TypeuserService){
     this.user = new User();
     this.typeUser = new TypeUser();
   }
+  ngOnInit(){
+    //me traigo todo lo que hay en la tabla typeuser
+    this.userTypeService.findUsersType().subscribe(data => {
+      this.userTypeList = data;
+    })
+  }
 
   onSubmit(){
     this.validateInputs()
     if (this.validName && this.validEmail){
+      console.log("user: ", this.user)
       this.userService.save(this.user).subscribe(result => this.gotoUserList())
     }
     
   }
 
-  getUserTypeList(){
-    this.userTypeService.findUsersType()
-  }
 
   gotoUserList(){
     this.router.navigate(['/users']);
@@ -44,12 +48,12 @@ export class UserFormComponent {
     console.log("antes if")
     console.log("name antes: ", this.user.name)
     console.log("email antes: ", this.user.email)
-    if(!this.user.name.trim()){
+    if(!this.user?.name?.trim()){
       console.log("vacio")
       console.log("name: ", this.user.name)
       this.validName=false
     }
-    if(!this.user.email.trim()){
+    if(!this.user?.email?.trim()){
       console.log("vacio")
       console.log("email: ", this.user.email)
       this.validEmail=false

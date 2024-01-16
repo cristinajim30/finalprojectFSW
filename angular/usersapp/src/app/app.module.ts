@@ -12,6 +12,7 @@ import { MenuComponent } from './component/menu/menu.component';
 import { TypeuserComponent } from './component/typeuser/typeuser.component';
 import { UserlistComponent } from './component/userlist/userlist.component';
 import { HomeComponent } from './component/home/home.component';
+import { UserTypeTableComponent } from './component/user-type-table/user-type-table.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HomeComponent } from './component/home/home.component';
     MenuComponent,
     TypeuserComponent,
     UserlistComponent,
-    HomeComponent
+    HomeComponent,
+    UserTypeTableComponent
   ],
   imports: [
     BrowserModule,
