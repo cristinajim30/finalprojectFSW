@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {  UserListTableComponent } from './component/user-list-table/user-list-table.component';
 import { UserFormComponent } from './component/user-form/user-form.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, withFetch } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { UserServiceService } from './services/user-service.service';
 import { MenuComponent } from './component/menu/menu.component';
 import { TypeuserComponent } from './component/typeuser/typeuser.component';
@@ -30,7 +30,7 @@ import { HomeComponent } from './component/home/home.component';
     AppRoutingModule
   ],
   providers: [
-    provideClientHydration()
+    provideHttpClient(withFetch()), provideClientHydration()
     //UserServiceService
   ],
   bootstrap: [AppComponent]
