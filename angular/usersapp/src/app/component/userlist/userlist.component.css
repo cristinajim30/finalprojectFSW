@@ -1,0 +1,18 @@
+#main_container{
+    background-color: rgb(209, 217, 230);
+    justify-content: center;
+    margin:20px;
+    margin-top: 30px;
+    text-align: center;
+    display:flex;
+    border-radius: 20px;
+}
+.btn-info{
+   --bs-btn-bg: #80a9beff!important;
+   --bs-btn-border-color: #80a9beff!important;
+   --bs-btn-hover-bg: rgb(98, 135, 153)!important;
+   --bs-btn-hover-border-color: rgb(98, 135, 153)!important;
+   --bs-btn-active-bg: #708090ff!important;
+    --bs-btn-active-border-color: #708090ff!important;
+   font-size: 1.15rem!important;
+}

@@ -1,0 +1,40 @@
+#header{
+    text-align: center;
+    background-color: #708090ff;
+    color:white;
+    padding: 2px;
+}
+#main_container{
+    background-color: rgb(209, 217, 230);
+    display: flow-root;
+    justify-content: center;
+    text-align: center;
+    margin:20px;
+    border-radius: 20px;
+}
+
+#second_container, .table-responsive{
+    justify-content: center;
+    text-align: center;
+}
+
+#second_container{
+    margin:20px;
+    margin-bottom: 30px;
+}
+
+.table{
+    margin-bottom: 0rem!important;
+}
+.table-responsive{
+    margin: 20px 10px!important;
+}
+button{
+    margin: 0px 5px;
+}
+.addbutton{
+    background-color: #890e54ff;
+    color: white;
+    width: 150px;
+    font-size:medium;
+}
