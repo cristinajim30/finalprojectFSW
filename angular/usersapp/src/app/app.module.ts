@@ -11,6 +11,7 @@ import { UserServiceService } from './services/user-service.service';
 import { MenuComponent } from './component/menu/menu.component';
 import { TypeuserComponent } from './component/typeuser/typeuser.component';
 import { UserlistComponent } from './component/userlist/userlist.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserlistComponent } from './component/userlist/userlist.component';
     UserFormComponent,
     MenuComponent,
     TypeuserComponent,
-    UserlistComponent
+    UserlistComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

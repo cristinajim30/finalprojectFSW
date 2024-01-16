@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from '../../model/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
+import { TypeuserService } from '../../services/typeuser.service';
+import { TypeUser } from '../../model/type-user';
 
 @Component({
   selector: 'app-user-form',
@@ -9,13 +11,17 @@ import { UserServiceService } from '../../services/user-service.service';
   styleUrl: './user-form.component.css'
 })
 export class UserFormComponent {
-
+  title="Add / Edit an user"
   user: User;
+  typeUser: TypeUser;
   validName=true
   validEmail=true
+  userTypeList: string[] = [];
+  usertypeselected: string = this.userTypeList[0];
 
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService){
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService, private userTypeService: TypeuserService){
     this.user = new User();
+    this.typeUser = new TypeUser();
   }
 
   onSubmit(){
@@ -24,6 +30,10 @@ export class UserFormComponent {
       this.userService.save(this.user).subscribe(result => this.gotoUserList())
     }
     
+  }
+
+  getUserTypeList(){
+    this.userTypeService.findUsersType()
   }
 
   gotoUserList(){

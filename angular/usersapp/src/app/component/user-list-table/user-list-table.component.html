@@ -1,20 +1,79 @@
-<div class="card my-5">
-    <div class="card-body">
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let user of users">
-                    <td>{{user.id}}</td>
-                    <td>{{user.name}}</td>
-                    <td><a href="mailto:{{ user.email }}">{{user.email}}</a></td>
-                </tr>
-            </tbody>
-        </table>
+<div id="header">
+    <h1>{{title}}</h1>
+</div>
+
+<div id="main_container">
+    
+    <div id="second_container">
+        <!--<button class="addbutton" id="add-user" href="/adduser" routerlink="/adduser" >Add user</button>-->
+        <ul class="text-center list-inline py-3">
+            <li class="list-inline-item"><a href="/adduser" routerlink="/adduser" class="btn addbutton">Add User</a></li>
+            </ul>
     </div>
+    
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">TypeUser</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Firstname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> 1</td>
+                        <td> PEpito</td>
+                        <td> Perez</td>
+                        <td> pgmail.com</td>
+                        <td> 
+                            <button class="btn btn-warning" id="edit-user" >Edit</button>
+                            <button class="btn btn-danger" id="delete-user" >Delete</button>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 1</td>
+                        <td> PEpito</td>
+                        <td> Perez</td>
+                        <td> pgmail.com</td>
+                        <td> 
+                            <button class="btn btn-warning" id="edit-user" >Edit</button>
+                            <button class="btn btn-danger" id="delete-user" >Delete</button>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 1</td>
+                        <td> PEpito</td>
+                        <td> Perez</td>
+                        <td> pgmail.com</td>
+                        <td> 
+                            <button class="btn btn-warning" id="edit-user" >Edit</button>
+                            <button class="btn btn-danger" id="delete-user" >Delete</button>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> 1</td>
+                        <td> PEpito jajjajaja</td>
+                        <td> Perez</td>
+                        <td> pgmail.com</td>
+                        <td> 
+                            <button class="btn btn-warning" id="edit-user" >Edit</button>
+                            <button class="btn btn-danger" id="delete-user" >Delete</button>
+                            
+                        </td>
+                    </tr>
+                    <!--<tr *ngFor="let user of users">
+                        <td>{{user.id}}</td>
+                        <td>{{user.name}}</td>
+                        <td><a href="mailto:{{ user.email }}">{{user.email}}</a></td>
+                    </tr>-->
+                </tbody>
+            </table>
+        </div>
+    
 </div>

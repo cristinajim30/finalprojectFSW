@@ -8,7 +8,7 @@ import { UserServiceService } from '../../services/user-service.service';
   styleUrl: './user-list-table.component.css'
 })
 export class UserListTableComponent {
-
+  title="User list";
   users: User[] = [];
 
   constructor(private userService: UserServiceService){

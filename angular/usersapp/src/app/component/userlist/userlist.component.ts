@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './userlist.component.css'
 })
 export class UserlistComponent {
-
+  title = 'Welcome to User List Options';
 }
