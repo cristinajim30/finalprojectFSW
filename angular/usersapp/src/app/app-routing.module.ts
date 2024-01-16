@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserListComponent } from './component/user-list/user-list.component';
+import { UserListTableComponent } from './component/user-list-table/user-list-table.component';
 import { UserFormComponent } from './component/user-form/user-form.component';
 
 const routes: Routes = [
-  {path: 'users', component: UserListComponent},
+  {path: 'users', component: UserListTableComponent},
   {path: 'adduser', component: UserFormComponent}
 ];
 

@@ -31,30 +31,18 @@ export class UserFormComponent {
   }
 
   validateInputs(){
-    console.log("name: ", this.user.name)
-    switch (this.user.name){
-      case undefined: { 
-        console.log("name undefined: ", this.user.name ," ", this.user.email)
-        this.validName= false
-        break; 
-     } 
-     case " ": { 
-      console.log("name with spaces: ", this.user.name ," ", this.user.email )
-      this.validName= false
-        break; 
-     } 
+    console.log("antes if")
+    console.log("name antes: ", this.user.name)
+    console.log("email antes: ", this.user.email)
+    if(!this.user.name.trim()){
+      console.log("vacio")
+      console.log("name: ", this.user.name)
+      this.validName=false
     }
-    switch (this.user.email){
-      case undefined: { 
-        console.log("email undefined: ", this.user.email)
-        this.validEmail= false
-        break; 
-     } 
-     case " ": { 
-      console.log("email with spaces: ",  this.user.email )
-      this.validEmail= false
-        break; 
-     } 
+    if(!this.user.email.trim()){
+      console.log("vacio")
+      console.log("email: ", this.user.email)
+      this.validEmail=false
     }
     
   }
