@@ -15,4 +15,9 @@ export class TypeuserService {
   public findUsersType(){
     return this.http.get<TypeUser[]>(this.usersUrl);
    }
+
+   public save(type: TypeUser){
+    return this.http.post<TypeUser>(this.usersUrl, type, {responseType: 'text' as 'json'})
+    
+   }
 }

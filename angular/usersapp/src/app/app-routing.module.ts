@@ -6,6 +6,7 @@ import { HomeComponent } from './component/home/home.component';
 import { UserlistComponent } from './component/userlist/userlist.component';
 import { TypeuserComponent } from './component/typeuser/typeuser.component';
 import { UserTypeTableComponent } from './component/user-type-table/user-type-table.component';
+import { UsertypeFormComponent } from './component/usertype-form/usertype-form.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'users', component: UserListTableComponent},
   {path: 'adduser', component: UserFormComponent},
   {path:'userstype', component:UserTypeTableComponent},
+  {path: 'addusertype', component:UsertypeFormComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 

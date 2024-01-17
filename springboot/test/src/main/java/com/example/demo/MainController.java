@@ -17,13 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api")
 @CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin({ "*" })
 public class MainController {
 
 	@Autowired
 	private UserRepository userRepository;
 
 	@PostMapping("/users")
-	void addUser(@RequestBody User user) {
+	public void addUser(@RequestBody User user) {
 		System.out.println("-----------BACK-----------metodo post users");
 		userRepository.save(user);
 		System.out.println("-----------BACK-----------user saved");

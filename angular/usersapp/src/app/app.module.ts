@@ -12,6 +12,7 @@ import { TypeuserComponent } from './component/typeuser/typeuser.component';
 import { UserlistComponent } from './component/userlist/userlist.component';
 import { HomeComponent } from './component/home/home.component';
 import { UserTypeTableComponent } from './component/user-type-table/user-type-table.component';
+import { UsertypeFormComponent } from './component/usertype-form/usertype-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserTypeTableComponent } from './component/user-type-table/user-type-ta
     TypeuserComponent,
     UserlistComponent,
     HomeComponent,
-    UserTypeTableComponent
+    UserTypeTableComponent,
+    UsertypeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,8 @@ import { UserTypeTableComponent } from './component/user-type-table/user-type-ta
     AppRoutingModule
   ],
   providers: [
-    provideHttpClient(withFetch()), provideClientHydration()
+    provideHttpClient(withFetch()), 
+    provideClientHydration()
     //UserServiceService
   ],
   bootstrap: [AppComponent]
