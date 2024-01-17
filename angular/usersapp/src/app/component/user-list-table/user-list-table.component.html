@@ -30,8 +30,8 @@
                         <td>{{user.firstname}}</td>
                         <td><a href="mailto:{{ user.email }}">{{user.email}}</a></td>
                         <td>
-                            <button class="btn btn-warning" id="edit-user">Edit</button>
-                            <button class="btn btn-danger" id="delete-user">Delete</button>
+                            <button class="btn btn-warning" id="edit-user" (click)="editUser(user.id)">Edit</button>
+                            <button class="btn btn-danger" id="delete-user" (click)="deleteUser(user.id)">Delete</button>
                         </td>
                     </tr>
                 </tbody>

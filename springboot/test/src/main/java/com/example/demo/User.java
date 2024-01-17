@@ -16,7 +16,14 @@ public class User {
 	@Column(name = "id")
 	private Integer id;
 	private String name;
+	private String firstname;
 	private String email;
+
+	/*
+	 * @OneToOne(cascade = CascadeType.ALL)
+	 * 
+	 * @JoinColumn(name = "user_type_id") private TypeUser usertype;
+	 */
 
 	public Integer getId() {
 		return id;
@@ -41,6 +48,20 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	/*
+	 * public TypeUser getUsertype() { return usertype; }
+	 * 
+	 * public void setUsertype(TypeUser usertype) { this.usertype = usertype; }
+	 */
 
 	@Override
 	public String toString() {

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
 import { TypeuserService } from '../../services/typeuser.service';
 import { TypeUser } from '../../model/type-user';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -11,13 +12,52 @@ import { TypeUser } from '../../model/type-user';
   styleUrl: './user-form.component.css'
 })
 export class UserFormComponent {
-  title="Add / Edit an user"
+  formulario!: FormGroup;
+  title="Add / Edit an user";
+
+  userTypeList: string[] = ['administrativo', 'manager'];
+  usertypeselected: string = this.userTypeList[0];
+  user: User;
+  typeUser: TypeUser; 
+
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService, private userTypeService: TypeuserService){
+    this.user = new User();
+    this.typeUser = new TypeUser();
+  }
+  ngOnInit(): void {
+    this.formulario = new FormGroup({
+      name: new FormControl('', Validators.required),
+      firstname: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      usertype: new FormControl()
+    })
+  }
+  onSubmit() {
+    // Handle form submission here
+    if (this.formulario.valid) {
+      console.log(this.formulario.value);
+      this.userService.save(this.user).subscribe(result => this.gotoUserList());
+      // perform other actions
+    }
+  }
+
+  gotoUserList(){
+    this.router.navigate(['/users']);
+    console.log('final method gotoUserList');
+  }
+
+
+
+
+
+  /*title="Add / Edit an user"
   user: User;
   typeUser: TypeUser;
   validName=true
   validEmail=true
-  userTypeList: TypeUser[] = [];
-  usertypeselected: TypeUser = this.userTypeList[0];
+  //type1: TypeUser = new TypeUser();
+  userTypeList: string[] = ['administrativo', 'manager'];
+  usertypeselected: string = this.userTypeList[0];
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService, private userTypeService: TypeuserService){
     this.user = new User();
@@ -25,7 +65,7 @@ export class UserFormComponent {
   }
   ngOnInit(){
     //me traigo todo lo que hay en la tabla typeuser
-    this.userTypeService.findUsersType().subscribe(data => {
+    /*this.userTypeService.findUsersType().subscribe(data => {
       this.userTypeList = data;
     })
   }
@@ -33,8 +73,9 @@ export class UserFormComponent {
   onSubmit(){
     this.validateInputs()
     if (this.validName && this.validEmail){
-      console.log("user: ", this.user)
-      this.userService.save(this.user).subscribe(result => this.gotoUserList())
+      console.log("user: ", this.user);
+      this.userService.save(this.user).subscribe(result => this.gotoUserList());
+      console.log("dsp save");
     }
     
   }
@@ -42,10 +83,11 @@ export class UserFormComponent {
 
   gotoUserList(){
     this.router.navigate(['/users']);
+    console.log('final method gotoUserList');
   }
 
   validateInputs(){
-    console.log("antes if")
+    //console.log("antes if")
     console.log("name antes: ", this.user.name)
     console.log("email antes: ", this.user.email)
     if(!this.user?.name?.trim()){
@@ -59,5 +101,5 @@ export class UserFormComponent {
       this.validEmail=false
     }
     
-  }
+  }*/
 }

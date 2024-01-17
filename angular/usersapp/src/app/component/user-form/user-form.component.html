@@ -5,7 +5,43 @@
 <div id="main_container">
     <div class="card">
         <div class="card-body">
-            <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+            <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="name" id="name" formControlName="name">
+                    <div *ngIf="formulario.get('name')?.invalid && formulario.get('name')?.touched">
+                      <div *ngIf="formulario.get('name')?.errors?.['required']">Name is required.</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="firstname">Firstname:</label>
+                    <input type="firstname" id="firstname" formControlName="firstname">
+                    <div *ngIf="formulario.get('firstname')?.invalid && formulario.get('firstname')?.touched">
+                      <div *ngIf="formulario.get('firstname')?.errors?.['required']">Firstame is required.</div>
+                    </div>
+                </div>
+                <div>
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" formControlName="email">
+                  <div *ngIf="formulario.get('email')?.invalid && formulario.get('email')?.touched">
+                    <div *ngIf="formulario.get('email')?.errors?.['required']">Email is required.</div>
+                    <div *ngIf="formulario.get('email')?.errors?.['email']">Invalid email format.</div>
+                  </div>
+                </div>
+                <div>
+                    <label for="usertype">Type:</label>
+                    <select  formControlName="usertype">
+                        <option *ngFor="let item of userTypeList" value="{{item}}">{{item}}</option> 
+                    </select> 
+                </div>
+               
+                <button type="submit" [disabled]="formulario.invalid">Login</button>
+              </form>
+
+
+            <!--<form (ngSubmit)="onSubmit()" #userForm="ngForm">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" [(ngModel)]="user.name" 
@@ -35,7 +71,7 @@
                 </div>
             
                 <button type="submit"  class="btn btn-info" (click)="onSubmit()">Create</button>
-            </form>
+            </form>-->
         </div>
     </div>
 </div>
