@@ -36,9 +36,15 @@
                         <option *ngFor="let item of userTypeList" value="{{item}}">{{item}}</option> 
                     </select> 
                 </div>-->
-               
-                <button type="submit" class="btn btn-info" [disabled]="userForm.invalid">Create</button>
+                <div class="buttom-container">
+                    <button type="submit" class="btn addbutton" [disabled]="userForm.invalid">Create</button>
+                </div>
+                
               </form>
+
+              <div class="sucessful-response" *ngIf="isSucessfull">
+                <p>Congratulations! You add a new user</p>
+              </div>
 
 
             <!--<form (ngSubmit)="onSubmit()" #userForm="ngForm">
@@ -74,4 +80,11 @@
             </form>-->
         </div>
     </div>
+   
+</div>
+
+<div class="go-back">
+    <ul class="text-center list-inline py-3">
+        <li class="list-inline-item"><a href="/users" routerlink="/users" class="btn btn-info">Back to User List</a></li>
+    </ul>
 </div>

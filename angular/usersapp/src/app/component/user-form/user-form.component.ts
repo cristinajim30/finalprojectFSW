@@ -19,12 +19,14 @@ export class UserFormComponent {
   usertypeselected: string = this.userTypeList[0];
   user: User;
   typeUser: TypeUser; 
+  isSucessfull: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService){
     this.user = new User();
     this.typeUser = new TypeUser();
   }
   ngOnInit(): void {
+    //console.log("state ", history.state);
     this.userForm = new FormGroup({
       name: new FormControl('', Validators.required),
       firstname: new FormControl('', Validators.required),
@@ -45,6 +47,7 @@ export class UserFormComponent {
       this.userService.save(usernew).subscribe(
         response => {
           this.userForm.reset();
+          this.isSucessfull = true;
           console.log('Solicitud POST exitosa:', response);
         },
         error => {
@@ -53,6 +56,8 @@ export class UserFormComponent {
     }
   }
 
+ 
+ 
   gotoUserList(){
     this.router.navigate(['/users']);
     console.log('final method gotoUserList');

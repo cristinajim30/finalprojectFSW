@@ -26,3 +26,14 @@ label{
 .alert{
     background-color: rgb(228, 99, 99);
 }
+
+.addbutton{
+    background-color: #890e54ff;
+    color: white;
+    width: 150px;
+    font-size:medium;
+}
+.buttom-container{
+    display: flex;
+  justify-content: center;
+}

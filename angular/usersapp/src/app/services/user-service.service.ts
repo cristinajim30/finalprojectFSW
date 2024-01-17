@@ -11,8 +11,8 @@ export class UserServiceService {
 
   private usersUrl: string;
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://springboot:8081/api/users';
-    //this.usersUrl = 'http://localhost:8081/api/users';
+    //this.usersUrl = 'http://springboot:8081/api/users';
+    this.usersUrl = 'http://localhost:8081/api/users';
    }
 
    public findAll(): Observable<User[]> {
