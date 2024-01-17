@@ -37,19 +37,19 @@ export class UserFormComponent {
     if (this.userForm.valid) {
       console.log("valid: ", this.userForm.value);
       console.log("name: ", this.userForm.get('name')?.value);
-      this.user.name=this.userForm.get('name')?.value;
-      this.user.firstname=this.userForm.get('firstname')?.value;
-      this.user.email=this.userForm.get('email')?.value;
+      let usernew = new User();
+      usernew.name=this.userForm.get('name')?.value;
+      usernew.firstname=this.userForm.get('firstname')?.value;
+      usernew.email=this.userForm.get('email')?.value;
       //this.user.name = this.userForm.get('name');
-      this.userService.save(this.user).subscribe(
+      this.userService.save(usernew).subscribe(
         response => {
-        console.log('Solicitud POST exitosa:', response);
-        // Manejar la respuesta si es necesario
-     },
-     error => {
-        console.error('Error al guardar usuario:', error);
-        // Manejar el error si es necesario
-     });
+          this.userForm.reset();
+          console.log('Solicitud POST exitosa:', response);
+        },
+        error => {
+           console.error('Error al guardar usuario:', error);
+        });
     }
   }
 

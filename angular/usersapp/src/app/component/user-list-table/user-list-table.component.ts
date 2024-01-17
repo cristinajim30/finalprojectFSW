@@ -22,13 +22,20 @@ export class UserListTableComponent {
   }
 
   editUser(userid: any){
+    console.log("method editUser: ", userid)
     this.userService.edit(userid).subscribe(result => this.gotoUser());
+    console.log("end method editUser")
   }
 
   gotoUser(){
+    console.log("starting method gotoUser")
     this.router.navigate(['/users']);
+    console.log("end method gotoUser")
   }
   deleteUser(userid: any){
-    this.userService.edit(userid).subscribe(result => this.gotoUser());
+    confirm("Are you sure you want to delete this user?")
+    console.log("method deleteUser: ", userid)
+    this.userService.delete(userid).subscribe(result => this.gotoUser());
+    console.log("end method deleteUser")
   }
 }

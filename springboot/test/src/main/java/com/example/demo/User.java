@@ -15,8 +15,11 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
+	@Column
 	private String name;
+	@Column
 	private String firstname;
+	@Column
 	private String email;
 
 	/*
@@ -27,6 +30,15 @@ public class User {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public User() {
+	}
+
+	public User(String name, String firstname, String email) {
+		this.name = name;
+		this.firstname = firstname;
+		this.email = email;
 	}
 
 	public void setId(Integer id) {

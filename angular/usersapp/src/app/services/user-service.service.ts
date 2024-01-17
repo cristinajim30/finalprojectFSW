@@ -22,12 +22,12 @@ export class UserServiceService {
    public save(user: User){
     console.log("metodo save en el servicio: ", user.name, ' ', user.firstname, ' ', user.email)
     return this.http.post<User>(this.usersUrl, user, {responseType: 'text' as 'json'})
-    .pipe(
+    /*.pipe(
       catchError(error => {
          console.error('Error al realizar la solicitud POST:', error);
          return throwError(error);
       })
-   );
+   );*/
    }
 
    public edit(user: User){
@@ -36,7 +36,9 @@ export class UserServiceService {
 
    public delete(userid: number){
     console.log('url para delete: ', this.usersUrl + '/' + userid)
-    return this.http.delete<void>(this.usersUrl + '/' + userid)
+    return this.http.delete<boolean>(this.usersUrl + '/' + userid, {
+      observe: 'response'
+    })
    }
    
 }
