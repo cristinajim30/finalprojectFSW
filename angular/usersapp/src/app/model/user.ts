@@ -3,5 +3,5 @@ export class User {
     name!: string;
     firstname!: string;
     email!:string;
-    typeuser!: string;
+    //stypeuser!: string;
 }

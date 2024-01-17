@@ -12,7 +12,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
   styleUrl: './user-form.component.css'
 })
 export class UserFormComponent {
-  formulario!: FormGroup;
+  userForm!: FormGroup;
   title="Add / Edit an user";
 
   userTypeList: string[] = ['administrativo', 'manager'];
@@ -20,24 +20,36 @@ export class UserFormComponent {
   user: User;
   typeUser: TypeUser; 
 
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService, private userTypeService: TypeuserService){
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService){
     this.user = new User();
     this.typeUser = new TypeUser();
   }
   ngOnInit(): void {
-    this.formulario = new FormGroup({
+    this.userForm = new FormGroup({
       name: new FormControl('', Validators.required),
       firstname: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
-      usertype: new FormControl()
+      //usertype: new FormControl()
     })
   }
   onSubmit() {
     // Handle form submission here
-    if (this.formulario.valid) {
-      console.log(this.formulario.value);
-      this.userService.save(this.user).subscribe(result => this.gotoUserList());
-      // perform other actions
+    if (this.userForm.valid) {
+      console.log("valid: ", this.userForm.value);
+      console.log("name: ", this.userForm.get('name')?.value);
+      this.user.name=this.userForm.get('name')?.value;
+      this.user.firstname=this.userForm.get('firstname')?.value;
+      this.user.email=this.userForm.get('email')?.value;
+      //this.user.name = this.userForm.get('name');
+      this.userService.save(this.user).subscribe(
+        response => {
+        console.log('Solicitud POST exitosa:', response);
+        // Manejar la respuesta si es necesario
+     },
+     error => {
+        console.error('Error al guardar usuario:', error);
+        // Manejar el error si es necesario
+     });
     }
   }
 
