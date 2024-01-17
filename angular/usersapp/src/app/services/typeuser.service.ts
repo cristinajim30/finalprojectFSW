@@ -9,7 +9,7 @@ export class TypeuserService {
 
   private usersUrl: string;
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8081/api/type';
+    this.usersUrl = 'http://springboot:8081/api/type';
    }
 
   public findUsersType(){

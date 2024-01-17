@@ -5,13 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {  UserListTableComponent } from './component/user-list-table/user-list-table.component';
 import { UserFormComponent } from './component/user-form/user-form.component';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule, withFetch } from '@angular/common/http';
-import { UserServiceService } from './services/user-service.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { MenuComponent } from './component/menu/menu.component';
 import { TypeuserComponent } from './component/typeuser/typeuser.component';
 import { UserlistComponent } from './component/userlist/userlist.component';
 import { HomeComponent } from './component/home/home.component';
+import { UserTypeTableComponent } from './component/user-type-table/user-type-table.component';
 
 @NgModule({
   declarations: [
@@ -21,16 +21,17 @@ import { HomeComponent } from './component/home/home.component';
     MenuComponent,
     TypeuserComponent,
     UserlistComponent,
-    HomeComponent
+    HomeComponent,
+    UserTypeTableComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,FormsModule,
     HttpClientModule,
     AppRoutingModule
   ],
   providers: [
-    provideClientHydration()
+    provideHttpClient(withFetch()), provideClientHydration()
     //UserServiceService
   ],
   bootstrap: [AppComponent]

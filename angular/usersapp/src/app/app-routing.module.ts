@@ -4,12 +4,16 @@ import { UserListTableComponent } from './component/user-list-table/user-list-ta
 import { UserFormComponent } from './component/user-form/user-form.component';
 import { HomeComponent } from './component/home/home.component';
 import { UserlistComponent } from './component/userlist/userlist.component';
+import { TypeuserComponent } from './component/typeuser/typeuser.component';
+import { UserTypeTableComponent } from './component/user-type-table/user-type-table.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'userlisttab', component: UserlistComponent},
+  {path: 'typeuserlisttab', component: TypeuserComponent},
   {path: 'users', component: UserListTableComponent},
   {path: 'adduser', component: UserFormComponent},
+  {path:'userstype', component:UserTypeTableComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 
