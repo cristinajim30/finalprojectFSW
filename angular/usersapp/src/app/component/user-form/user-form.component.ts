@@ -13,7 +13,7 @@ import { first } from 'rxjs/operators';
   styleUrl: './user-form.component.css'
 })
 export class UserFormComponent {
-  title="Add / Edit an user";
+  //title="Add / Edit an user";
 
   id?: any;
   isEditMode?: boolean;
@@ -21,28 +21,39 @@ export class UserFormComponent {
   userForm!: FormGroup;
   
   userTypeList: TypeUser[] = [];
-  usertypeselected!: TypeUser  ;
   user: User;
-  //typeUser: TypeUser; 
   isSucessfull: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService, private userTypeService: TypeuserService){
     this.user = new User();
-    //this.typeUser = new TypeUser();
+    //this.typeUserToEdit = new TypeUser();
   }
   ngOnInit(): void {
+    //retrieve the id value for the param
     this.id = this.route.snapshot.params['id'];
     this.isEditMode = this.id ? true : false;
     this.validationsForm();
     this.loadUsersType();
     if (this.isEditMode) {
+      //console.log("seleccionado antes: ", this.usertypeselected)
+      this.validationsForm();
       console.log("---Edit mode---id: ", this.id)
-      this.userService.findById(this.id)
-          .pipe(first())
-          .subscribe(x => this.userForm.patchValue(x));
-  }
+      this.userService.findById(this.id).subscribe(user => {
+        // fill inputs of user
+        this.userForm.patchValue(user);
+        //console.log("type for edit: ", user.usertype.type)
+        //set the value of usertype to fill the select option
+        this.userForm.patchValue({
+          usertype: user.usertype.type
+        })
+        //console.log("seleccionado dsp: ", this.userForm.get('usertype')?.value)
+        this.loadUsersType();
+      });
+
+    }
   }
   validationsForm(){
+    console.log("validations form method")
     this.userForm = new FormGroup({
       name: new FormControl('', Validators.required),
       firstname: new FormControl('', Validators.required),
@@ -66,6 +77,7 @@ export class UserFormComponent {
 
 
   validateUser(){
+    console.log("isValid: ", this.userForm.valid)
     if (this.userForm.valid) {
       console.log("valid: ", this.userForm.value);
       
@@ -75,6 +87,7 @@ export class UserFormComponent {
       usernew.firstname=this.userForm.get('firstname')?.value;
       usernew.email=this.userForm.get('email')?.value;
 
+      //if the value is not empty or undefined
       if (this.userForm.get('usertype')?.value ) {
         console.log("dentro if")
         this.userTypeList.forEach(element => {
@@ -130,60 +143,4 @@ export class UserFormComponent {
     console.log('final method gotoUserList');
   }
 
-
-
-
-
-  /*title="Add / Edit an user"
-  user: User;
-  typeUser: TypeUser;
-  validName=true
-  validEmail=true
-  //type1: TypeUser = new TypeUser();
-  userTypeList: string[] = ['administrativo', 'manager'];
-  usertypeselected: string = this.userTypeList[0];
-
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserServiceService, private userTypeService: TypeuserService){
-    this.user = new User();
-    this.typeUser = new TypeUser();
-  }
-  ngOnInit(){
-    //me traigo todo lo que hay en la tabla typeuser
-    /*this.userTypeService.findUsersType().subscribe(data => {
-      this.userTypeList = data;
-    })
-  }
-
-  onSubmit(){
-    this.validateInputs()
-    if (this.validName && this.validEmail){
-      console.log("user: ", this.user);
-      this.userService.save(this.user).subscribe(result => this.gotoUserList());
-      console.log("dsp save");
-    }
-    
-  }
-
-
-  gotoUserList(){
-    this.router.navigate(['/users']);
-    console.log('final method gotoUserList');
-  }
-
-  validateInputs(){
-    //console.log("antes if")
-    console.log("name antes: ", this.user.name)
-    console.log("email antes: ", this.user.email)
-    if(!this.user?.name?.trim()){
-      console.log("vacio")
-      console.log("name: ", this.user.name)
-      this.validName=false
-    }
-    if(!this.user?.email?.trim()){
-      console.log("vacio")
-      console.log("email: ", this.user.email)
-      this.validEmail=false
-    }
-    
-  }*/
 }

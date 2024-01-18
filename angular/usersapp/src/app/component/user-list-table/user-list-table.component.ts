@@ -26,7 +26,6 @@ export class UserListTableComponent {
 
   editUser(id: any){
     console.log("method editUser id-: ", id)
-    let txtButtom = "Edit";
     this.router.navigate(['/edituser', id]);
     //this.userService.edit(userid).subscribe(result => this.gotoUser());
     console.log("end method editUser")

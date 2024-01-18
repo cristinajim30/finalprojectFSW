@@ -35,6 +35,19 @@ public class TypeUserController {
 		return typeUserRepository.findAll();
 	}
 
+	@GetMapping("/type/{typeId}")
+	public Optional<TypeUser> getTypeById(@PathVariable int typeId) {
+
+		Optional<TypeUser> theType = typeUserRepository.findById(typeId);
+		System.out.println("-----------BACK-----------metodo get typeById");
+		System.out.println("-----------BACK-----------the typeID: " + typeId);
+		if (theType == null) {
+			throw new RuntimeException("Type id not found - " + typeId);
+		}
+
+		return theType;
+	}
+
 	// update existing usertype
 	@PutMapping("/type")
 	public TypeUser updateEmployee(@RequestBody TypeUser theTypeUser) {

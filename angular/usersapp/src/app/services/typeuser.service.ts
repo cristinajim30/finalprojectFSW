@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TypeUser } from '../model/type-user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,11 @@ export class TypeuserService {
 
   public findUsersType(){
     return this.http.get<TypeUser[]>(this.usersUrl);
+   }
+
+   public findUserTypeById(id: number): Observable<TypeUser>{
+    console.log('url para typeid: ', this.usersUrl + '/' + id)
+    return this.http.get<TypeUser>(this.usersUrl + '/' + id)
    }
 
    public save(type: TypeUser){

@@ -27,6 +27,13 @@ export class UserTypeTableComponent {
     console.log("list type: ", this.typeusers)
   }
 
+  editUserType(id: any){
+    console.log("method editUserType id-: ", id)
+    this.router.navigate(['/editusertype', id]);
+    //this.userService.edit(userid).subscribe(result => this.gotoUser());
+    console.log("end method editUserType")
+  }
+
   deleteUserType(userTypeId: any){
     confirm("Are you sure you want to delete this user?")
     this.userTypeService.delete(userTypeId).subscribe(result => this.loadData());

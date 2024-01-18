@@ -26,7 +26,7 @@
                         <td>{{type.id}}</td>
                         <td>{{type.type}}</td>
                         <td>
-                            <button class="btn btn-warning" id="edit-user" >Edit</button>
+                            <button class="btn btn-warning" id="edit-user" (click)="editUserType(type.id)">Edit</button>
                             <button class="btn btn-danger" id="delete-user" (click)="deleteUserType(type.id)">Delete</button>
                         </td>
                     </tr>
