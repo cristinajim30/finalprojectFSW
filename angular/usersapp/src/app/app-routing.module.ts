@@ -14,6 +14,7 @@ const routes: Routes = [
   {path: 'typeuserlisttab', component: TypeuserComponent},
   {path: 'users', component: UserListTableComponent},
   {path: 'adduser', component: UserFormComponent},
+  { path: 'edituser/:id', component: UserFormComponent },
   {path:'userstype', component:UserTypeTableComponent},
   {path: 'addusertype', component:UsertypeFormComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},

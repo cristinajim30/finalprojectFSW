@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import {User} from '../../model/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
@@ -11,6 +11,9 @@ import { UserServiceService } from '../../services/user-service.service';
 export class UserListTableComponent {
   title="User list";
   users: User[] = [];
+
+  @Input() txtButtom?: string;
+  
   
 
   constructor(private route: ActivatedRoute, private router: Router,private userService: UserServiceService){
@@ -21,13 +24,15 @@ export class UserListTableComponent {
   }
  
 
-  editUser(userid: any){
-    console.log("method editUser: ", userid)
+  editUser(id: any){
+    console.log("method editUser id-: ", id)
     let txtButtom = "Edit";
-    this.router.navigate(['/adduser']);
+    this.router.navigate(['/edituser', id]);
     //this.userService.edit(userid).subscribe(result => this.gotoUser());
     console.log("end method editUser")
   }
+
+ 
 
   /*gotoUser(){
     console.log("starting method gotoUser")
@@ -40,11 +45,17 @@ export class UserListTableComponent {
     this.userService.findAll().subscribe(data => {
       this.users = data;
     })
+    console.log("user list: ", this.users)
+
+    this.users.forEach(element => {
+      const type= element.usertype
+      console.log("element type: ", type)
+      console.log("type: ", type.id, '-', type.type)
+    });
   }
  
   deleteUser(userid: any){
     confirm("Are you sure you want to delete this user?")
     this.userService.delete(userid).subscribe(result => this.loadComponent());
-    
   }
 }

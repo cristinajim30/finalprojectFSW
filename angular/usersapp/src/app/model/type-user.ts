@@ -1,4 +1,7 @@
+import { User } from "./user";
+
 export class TypeUser {
     id!: string;
-    typeUser!: string;
+    type!: string;
+    user!: User;
 }

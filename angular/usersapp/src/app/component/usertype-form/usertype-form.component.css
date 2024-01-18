@@ -37,3 +37,22 @@ label{
     display: flex;
   justify-content: center;
 }
+.go-back{
+    text-align: center;
+    background-color: #708090ff;
+    color:white;
+    padding: 2px;
+}
+
+.sucessful-response{
+    background-color: rgb(77, 226, 134);
+    color:white;
+    margin: 15px 0px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.sucessful-response p{
+    font-size: 1rem;
+    padding-top: 10px;
+}

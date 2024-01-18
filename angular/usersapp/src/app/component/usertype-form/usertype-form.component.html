@@ -21,7 +21,17 @@
                 </div>
               </form>
 
+              <div class="sucessful-response" *ngIf="isSucessfull">
+                <p>Congratulations! You add a new user type</p>
+              </div>
+
         </div>
     </div>
+</div>
+
+<div class="go-back">
+    <ul class="text-center list-inline py-3">
+        <li class="list-inline-item"><a href="/userstype" routerlink="/userstype" class="btn btn-info">Back to User Type List</a></li>
+    </ul>
 </div>
 

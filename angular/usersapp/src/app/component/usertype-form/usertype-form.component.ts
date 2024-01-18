@@ -12,6 +12,8 @@ export class UsertypeFormComponent {
   title="Add / Edit an user type";
   typeForm!: FormGroup;
   typeUser: TypeUser; 
+  isSucessfull: boolean = false;
+
   constructor(private userTypeService: TypeuserService){
     this.typeUser = new TypeUser();
   }
@@ -26,8 +28,12 @@ export class UsertypeFormComponent {
     if (this.typeForm.valid) {
       console.log("valid: ", this.typeForm.value);
       console.log("type: ", this.typeForm.get('type')?.value);
-      this.userTypeService.save(this.typeUser).subscribe(
+      let typenew = new TypeUser();
+      typenew.type=this.typeForm.get('type')?.value;
+      this.userTypeService.save(typenew).subscribe(
         response => {
+          this.typeForm.reset();
+          this.isSucessfull = true;
         console.log('Solicitud POST exitosa:', response);
         // Manejar la respuesta si es necesario
      },
@@ -37,4 +43,6 @@ export class UsertypeFormComponent {
      });
     }
   }
+
+  
 }

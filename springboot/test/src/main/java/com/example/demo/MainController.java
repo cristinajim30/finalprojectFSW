@@ -36,16 +36,29 @@ public class MainController {
 		return userRepository.findAll();
 	}
 
+	@GetMapping("/users/{userId}")
+	public Optional<User> getUserById(@PathVariable int userId) {
+
+		Optional<User> theUser = userRepository.findById(userId);
+		System.out.println("-----------BACK-----------metodo get usersById");
+		System.out.println("-----------BACK-----------theuserID: " + userId);
+		if (theUser == null) {
+			throw new RuntimeException("User id not found - " + userId);
+		}
+
+		return theUser;
+	}
+
 	// update existing user
 	@PutMapping("/users")
-	public User updateEmployee(@RequestBody User theUser) {
+	public User updateUser(@RequestBody User theUser) {
 		System.out.println("-----------BACK-----------metodo put users");
 		return userRepository.save(theUser);
 	}
 
 	// delete user
 	@DeleteMapping("/users/{userId}")
-	public void deleteEmployee(@PathVariable int userId) {
+	public void deleteUser(@PathVariable int userId) {
 		System.out.println("-----------BACK-----------metodo delete users");
 		Optional<User> tempUser = userRepository.findById(userId);
 
@@ -56,8 +69,8 @@ public class MainController {
 		}
 
 		userRepository.deleteById(userId);
-		System.out.println("-----------BACK-----Deleted employee id - " + userId);
+		System.out.println("-----------BACK-----Deleted user id - " + userId);
 
-		// return "Deleted employee id - " + userId;
 	}
+
 }
