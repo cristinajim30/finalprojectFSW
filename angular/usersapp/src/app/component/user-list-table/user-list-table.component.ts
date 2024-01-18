@@ -11,9 +11,9 @@ import { UserServiceService } from '../../services/user-service.service';
 export class UserListTableComponent {
   title="User list";
   users: User[] = [];
-
-  @Input() txtButtom?: string;
-  
+  tableColumns: string[] = ['UserType', 'Name', 'Firstname', 'Email'];
+  sortKey: any = '';
+  reverse: boolean = false;
   
 
   constructor(private route: ActivatedRoute, private router: Router,private userService: UserServiceService){
@@ -27,18 +27,24 @@ export class UserListTableComponent {
   editUser(id: any){
     console.log("method editUser id-: ", id)
     this.router.navigate(['/edituser', id]);
-    //this.userService.edit(userid).subscribe(result => this.gotoUser());
     console.log("end method editUser")
   }
 
  
 
-  /*gotoUser(){
-    console.log("starting method gotoUser")
-    let currentUrl = this.router.url;
-    this.router.navigate([currentUrl]);
-    console.log("end method gotoUser")
-  }*/
+  sortTable(key: any){
+    //function to sort table in ascending or descending order by key name
+    this.reverse = this.sortKey === key ? !this.reverse : false;
+    this.sortKey = key;
+    console.log("Key: ", key)
+    /*this.users.sort((a, b) => {
+      const x = a[key];
+      const y = b[key];
+      return this.reverse ? (x > y ? -1 : 1) : (x < y ? -1 : 1)
+    });*/
+  }
+
+ 
 
   loadComponent(){
     this.userService.findAll().subscribe(data => {

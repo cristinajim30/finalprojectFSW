@@ -15,10 +15,9 @@
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">User Type</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Firstname</th>
-                        <th scope="col">Email</th>
+
+                        <th scope="col"*ngFor="let column of tableColumns" (click) = "sortTable(column)">{{ column }} <i class="bi bi-arrow-down-up"></i></th>
+                       
                         
                         <th scope="col">Actions</th>
                     </tr>
