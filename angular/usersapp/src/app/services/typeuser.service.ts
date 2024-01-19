@@ -18,7 +18,6 @@ export class TypeuserService {
    }
 
    public findUserTypeById(id: number): Observable<TypeUser>{
-    //console.log('url para typeid: ', this.usersUrl + '/' + id)
     return this.http.get<TypeUser>(this.usersUrl + '/' + id)
    }
 
@@ -31,13 +30,11 @@ export class TypeuserService {
    }
 
    public delete(userTypeid: number){
-    //console.log('url para delete: ', this.usersUrl + '/' + userTypeid)
     return this.http.delete<void>(this.usersUrl + '/' + userTypeid, {observe: 'response'})
     .pipe(
       catchError(error => {
-        //console.error('Error en la petición DELETE:', error);
         alert("It is not possible to delete a type user because there are users with this type user")
-        return throwError(error); // Reenviar el error al componente
+        return throwError(error); // Send the error to the component
       })
     );
    }

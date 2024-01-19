@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api")
 @CrossOrigin(origins = "http://localhost:4200")
-//@CrossOrigin({ "*" })
 public class MainController {
 
 	@Autowired
@@ -25,14 +24,11 @@ public class MainController {
 
 	@PostMapping("/users")
 	public void addUser(@RequestBody User user) {
-		System.out.println("-----------BACK-----------metodo post users");
 		userRepository.save(user);
-		System.out.println("-----------BACK-----------user saved");
 	}
 
 	@GetMapping("/users")
 	public @ResponseBody Iterable<User> getAllUsers() {
-		System.out.println("-----------BACK-----------metodo get users");
 		return userRepository.findAll();
 	}
 
@@ -40,8 +36,6 @@ public class MainController {
 	public Optional<User> getUserById(@PathVariable int userId) {
 
 		Optional<User> theUser = userRepository.findById(userId);
-		System.out.println("-----------BACK-----------metodo get usersById");
-		System.out.println("-----------BACK-----------theuserID: " + userId);
 		if (theUser == null) {
 			throw new RuntimeException("User id not found - " + userId);
 		}
@@ -52,14 +46,12 @@ public class MainController {
 	// update existing user
 	@PutMapping("/users")
 	public User updateUser(@RequestBody User theUser) {
-		System.out.println("-----------BACK-----------metodo put users");
 		return userRepository.save(theUser);
 	}
 
 	// delete user
 	@DeleteMapping("/users/{userId}")
 	public void deleteUser(@PathVariable int userId) {
-		System.out.println("-----------BACK-----------metodo delete users");
 		Optional<User> tempUser = userRepository.findById(userId);
 
 		// throw exception if null
@@ -69,7 +61,6 @@ public class MainController {
 		}
 
 		userRepository.deleteById(userId);
-		System.out.println("-----------BACK-----Deleted user id - " + userId);
 
 	}
 
