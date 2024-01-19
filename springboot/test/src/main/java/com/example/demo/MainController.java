@@ -25,7 +25,6 @@ public class MainController {
 	@PostMapping("/users")
 	public void addUser(@RequestBody User user) {
 		userRepository.save(user);
-		System.out.println("-----------BACK: user saved");
 	}
 
 	@GetMapping("/users")
@@ -37,7 +36,6 @@ public class MainController {
 	public Optional<User> getUserById(@PathVariable int userId) {
 
 		Optional<User> theUser = userRepository.findById(userId);
-		System.out.println("-----------BACK: theuserID: " + userId);
 		if (theUser == null) {
 			throw new RuntimeException("User id not found - " + userId);
 		}
@@ -48,7 +46,6 @@ public class MainController {
 	// update existing user
 	@PutMapping("/users")
 	public User updateUser(@RequestBody User theUser) {
-		System.out.println("-----------BACK: user edit");
 		return userRepository.save(theUser);
 	}
 
@@ -64,7 +61,6 @@ public class MainController {
 		}
 
 		userRepository.deleteById(userId);
-		System.out.println("-----------BACK: Deleted user id - " + userId);
 
 	}
 

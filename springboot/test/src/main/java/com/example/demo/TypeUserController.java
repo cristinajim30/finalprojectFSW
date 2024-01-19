@@ -25,7 +25,6 @@ public class TypeUserController {
 	@PostMapping("/type")
 	public void addUser(@RequestBody TypeUser typeUser) {
 		typeUserRepository.save(typeUser);
-		System.out.println("-----------BACK: type saved");
 	}
 
 	@GetMapping("/type")
@@ -37,7 +36,6 @@ public class TypeUserController {
 	public Optional<TypeUser> getTypeById(@PathVariable int typeId) {
 
 		Optional<TypeUser> theType = typeUserRepository.findById(typeId);
-		System.out.println("-----------BACK: the typeID: " + typeId);
 		if (theType == null) {
 			throw new RuntimeException("Type id not found - " + typeId);
 		}
@@ -48,7 +46,6 @@ public class TypeUserController {
 	// update existing usertype
 	@PutMapping("/type")
 	public TypeUser updateEmployee(@RequestBody TypeUser theTypeUser) {
-		System.out.println("-----------BACK: metodo put type");
 		return typeUserRepository.save(theTypeUser);
 	}
 
@@ -63,6 +60,5 @@ public class TypeUserController {
 		}
 
 		typeUserRepository.deleteById(userTypeId);
-		System.out.println("-----------BACK: Deleted userType id - " + userTypeId);
 	}
 }

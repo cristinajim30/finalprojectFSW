@@ -29,18 +29,14 @@ export class UsertypeFormComponent {
     this.validationsForm();
     this.loadUsersType();
     if (this.isEditMode) {
-      //console.log("seleccionado antes: ", this.usertypeselected)
       this.validationsForm();
-      //console.log("---Edit mode---id: ", this.id)
       this.userTypeService.findUserTypeById(this.id).subscribe(data => {
         // fill inputs of user
         this.typeForm.patchValue(data);
-        //console.log("type for edit: ", user.usertype.type)
         //set the value of usertype to fill the select option
         this.typeForm.patchValue({
           type: data.type
         })
-        //console.log("seleccionado dsp: ", this.typeForm.get('type')?.value)
         this.loadUsersType();
       });
 
@@ -55,8 +51,6 @@ export class UsertypeFormComponent {
 
   validateUserType(){
     if (this.typeForm.valid) {
-      //console.log("valid: ", this.typeForm.value);
-      //console.log("type: ", this.typeForm.get('type')?.value);
       let typenew = new TypeUser();
       typenew.type=this.typeForm.get('type')?.value;
       
@@ -79,7 +73,6 @@ export class UsertypeFormComponent {
     this.userTypeService.findUsersType().subscribe(data => {
       this.userTypeList = data;
     })
-    //console.log("list type: ", this.userTypeList)
   }
 
   createUserType(typenew : TypeUser){
@@ -87,7 +80,6 @@ export class UsertypeFormComponent {
       response => {
         this.typeForm.reset();
         this.isSucessfull = true;
-      //console.log('Solicitud POST exitosa:', response);
    },
    error => {
       console.error('Error saving user:', error);
@@ -100,7 +92,6 @@ export class UsertypeFormComponent {
       response => {
         this.typeForm.reset();
         this.isSucessfull = true;
-        //console.log('Solicitud POST update exitosa:', response);
       },
       error => {
          console.error('Error updating usertype:', error);

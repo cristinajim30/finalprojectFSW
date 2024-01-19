@@ -28,13 +28,10 @@ export class UserTypeTableComponent {
     this.userTypeService.findUsersType().subscribe(data => {
       this.typeusers = data;
     })
-    //console.log("list type: ", this.typeusers)
   }
 
   editUserType(id: any){
-    //console.log("method editUserType id-: ", id)
     this.router.navigate(['/editusertype', id]);
-    //console.log("end method editUserType")
   }
 
   deleteUserType(userTypeId: any){
