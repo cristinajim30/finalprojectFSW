@@ -5,7 +5,6 @@
 <div id="main_container">
     
     <div id="second_container">
-        <!--<button class="addbutton" id="add-user" href="/adduser" routerlink="/adduser" >Add user</button>-->
         <ul class="text-center list-inline py-3">
             <li class="list-inline-item"><a href="/adduser" routerlink="/adduser" class="btn addbutton">Add User</a></li>
         </ul>
@@ -15,22 +14,23 @@
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">TypeUser</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Firstname</th>
-                        <th scope="col">Email</th>
+
+                        <th scope="col"*ngFor="let column of tableColumns" (click) = "sortTable(column)">{{ column }} <i class="bi bi-arrow-down-up"></i></th>
+                       
+                        
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     
                     <tr *ngFor="let user of users">
-                        <td>{{user.id}}</td>
+                        <td>{{user.usertype.type}}</td>
                         <td>{{user.name}}</td>
                         <td>{{user.firstname}}</td>
                         <td><a href="mailto:{{ user.email }}">{{user.email}}</a></td>
-                        <td>
-                            <button class="btn btn-warning" id="edit-user" (click)="editUser(user.id)">Edit</button>
+                        <td >
+                            <button class="btn btn-success" id="edit-user" (click)="viewUser(user.id)" >View profile</button>
+                            <button class="btn btn-warning" id="edit-user" (click)="editUser(user.id)" >Edit</button>
                             <button class="btn btn-danger" id="delete-user" (click)="deleteUser(user.id)">Delete</button>
                         </td>
                     </tr>

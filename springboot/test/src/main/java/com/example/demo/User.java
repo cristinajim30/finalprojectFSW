@@ -1,10 +1,15 @@
 package com.example.demo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,18 +20,29 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private Integer id;
+	@Column
 	private String name;
+	@Column
 	private String firstname;
+	@Column
 	private String email;
 
-	/*
-	 * @OneToOne(cascade = CascadeType.ALL)
-	 * 
-	 * @JoinColumn(name = "user_type_id") private TypeUser usertype;
-	 */
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_type_id")
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	private TypeUser usertype;
 
 	public Integer getId() {
 		return id;
+	}
+
+	public User() {
+	}
+
+	public User(String name, String firstname, String email) {
+		this.name = name;
+		this.firstname = firstname;
+		this.email = email;
 	}
 
 	public void setId(Integer id) {
@@ -57,15 +73,18 @@ public class User {
 		this.firstname = firstname;
 	}
 
-	/*
-	 * public TypeUser getUsertype() { return usertype; }
-	 * 
-	 * public void setUsertype(TypeUser usertype) { this.usertype = usertype; }
-	 */
+	public TypeUser getUsertype() {
+		return usertype;
+	}
+
+	public void setUsertype(TypeUser usertype) {
+		this.usertype = usertype;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + "]";
+		return "User [id=" + id + ", name=" + name + ", firstname=" + firstname + ", email=" + email + ", usertype="
+				+ usertype + "]";
 	}
 
 }

@@ -5,9 +5,8 @@
 <div id="main_container">
     
     <div id="second_container">
-        <!--<button class="addbutton" id="add-user" href="/adduser" routerlink="/adduser" >Add user</button>-->
         <ul class="text-center list-inline py-3">
-            <li class="list-inline-item"><a href="/adduser" routerlink="/adduser" class="btn addbutton">Add User Type</a></li>
+            <li class="list-inline-item"><a href="/addusertype" routerlink="/addusertype" class="btn addbutton">Add User Type</a></li>
         </ul>
     </div>
     
@@ -15,23 +14,21 @@
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">TypeUser</th>
+                        <th scope="col"*ngFor="let column of tableColumns" (click) = "sortTable(column)">{{ column }} <i class="bi bi-arrow-down-up"></i></th>
+
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     
-                    <!--<tr *ngFor="let user of users">
-                        <td>{{user.id}}</td>
-                        <td>{{user.name}}</td>
-                        <td>{{user.firstname}}</td>
-                        <td><a href="mailto:{{ user.email }}">{{user.email}}</a></td>
+                    <tr *ngFor="let type of typeusers">
+                        <td>{{type.id}}</td>
+                        <td>{{type.type}}</td>
                         <td>
-                            <button class="btn btn-warning" id="edit-user">Edit</button>
-                            <button class="btn btn-danger" id="delete-user">Delete</button>
+                            <button class="btn btn-warning" id="edit-user" (click)="editUserType(type.id)">Edit</button>
+                            <button class="btn btn-danger" id="delete-user" (click)="deleteUserType(type.id)">Delete</button>
                         </td>
-                    </tr>-->
+                    </tr>
                 </tbody>
             </table>
         </div>

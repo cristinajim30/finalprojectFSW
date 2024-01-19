@@ -18,7 +18,25 @@ ul{
     height: 80%;
     display: flex;
     margin-left:15px;
+    
 }
+
+@media (max-width: 800px) {
+      .tabs{
+        width: 50%;
+        height: 80%;
+        
+      }  
+      .tabs li a{
+        padding:0px;
+        font-size: 1rem;
+        margin: 5px 5px;
+      }
+      .navbar{
+        justify-content: left;
+      }
+}
+
 .tabs li{
     list-style-type: none;
 }
@@ -45,6 +63,7 @@ ul{
     width: fit-content;
 }
 
+
 .navbar li ul {
     display:none;
     position:absolute;
@@ -55,3 +74,4 @@ ul{
     margin: 5px;
     margin-left: 50px;
 }
+

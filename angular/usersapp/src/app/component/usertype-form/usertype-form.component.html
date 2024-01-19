@@ -1,5 +1,5 @@
 <div id="header">
-    <h1>{{title}}</h1>
+    <h1>{{ isEditMode ? "Edit" : "Add" }} an usertype</h1>
 </div>
 
 <div id="main_container">
@@ -16,11 +16,22 @@
                 </div>
                 
                 
-               
-                <button type="submit" class="btn btn-info" [disabled]="typeForm.invalid">Create</button>
+               <div class="buttom-container">
+                    <button type="submit" class="btn addbutton" [disabled]="typeForm.invalid">{{ isEditMode ? "Edit" : "Create" }}</button>
+                </div>
               </form>
+
+              <div class="sucessful-response" *ngIf="isSucessfull">
+                <p>Congratulations! You {{ isEditMode ? "edit" : "add" }} a new user type</p>
+              </div>
 
         </div>
     </div>
+</div>
+
+<div class="go-back">
+    <ul class="text-center list-inline py-3">
+        <li class="list-inline-item"><a href="/userstype" routerlink="/userstype" class="btn btn-info">Back to User Type List</a></li>
+    </ul>
 </div>
 

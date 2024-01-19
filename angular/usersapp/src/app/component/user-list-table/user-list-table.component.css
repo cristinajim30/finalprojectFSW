@@ -38,3 +38,6 @@ button{
     width: 150px;
     font-size:medium;
 }
+.bi .bi-arrow-down-up{
+    color:red!important;
+}

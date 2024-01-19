@@ -13,6 +13,7 @@ import { UserlistComponent } from './component/userlist/userlist.component';
 import { HomeComponent } from './component/home/home.component';
 import { UserTypeTableComponent } from './component/user-type-table/user-type-table.component';
 import { UsertypeFormComponent } from './component/usertype-form/usertype-form.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UsertypeFormComponent } from './component/usertype-form/usertype-form.c
     UserlistComponent,
     HomeComponent,
     UserTypeTableComponent,
-    UsertypeFormComponent
+    UsertypeFormComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
