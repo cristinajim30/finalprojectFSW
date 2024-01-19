@@ -2,6 +2,8 @@ import { Component, Input} from '@angular/core';
 import {User} from '../../model/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserServiceService } from '../../services/user-service.service';
+import { TypeUser } from '../../model/type-user';
+import { TypeuserService } from '../../services/typeuser.service';
 
 @Component({
   selector: 'app-user-list-table',
@@ -11,9 +13,11 @@ import { UserServiceService } from '../../services/user-service.service';
 export class UserListTableComponent {
   title="User list";
   users: User[] = [];
-  tableColumns: string[] = ['UserType', 'Name', 'Firstname', 'Email'];
+  tableColumns: string[] = ['User Type', 'Name', 'Firstname', 'Email'];
+  //variables to sort the table
   sortKey: any = '';
   reverse: boolean = false;
+  typelist: TypeUser[] = [];
   
 
   constructor(private route: ActivatedRoute, private router: Router,private userService: UserServiceService){
@@ -33,16 +37,40 @@ export class UserListTableComponent {
  
 
   sortTable(key: any){
-    //function to sort table in ascending or descending order by key name
-    this.reverse = this.sortKey === key ? !this.reverse : false;
-    this.sortKey = key;
+    
     console.log("Key: ", key)
-    /*this.users.sort((a, b) => {
-      const x = a[key];
-      const y = b[key];
-      return this.reverse ? (x > y ? -1 : 1) : (x < y ? -1 : 1)
-    });*/
+    if (key === 'User Type'){
+      key = key.split(" ")[1].toLowerCase();
+      console.log("key type:", key)
+    
+      this.reverse = this.sortKey === key ? !this.reverse : false;
+      this.sortKey = key;
+      console.log("sortkey: ", this.sortKey)
+      this.users.sort((a, b) => {
+        const x = a.usertype.type;
+        const y = b.usertype.type;
+        console.log("x: ", x)
+        console.log("y: ", y)
+        return this.reverse ? (x > y ? -1 : 1) : (x < y ? -1 : 1)
+      });
+    }
+    else{
+      console.log("entra else")
+      key = key.charAt(0).toLowerCase() + key.slice(1);
+      this.reverse = this.sortKey === key ? !this.reverse : false;
+      this.sortKey = key;
+    
+      this.users.sort((a, b) => {
+        console.log("a ", a)
+        console.log("b ", b)
+        const x = a[key as keyof User];
+        const y = b[key as keyof User];
+        return this.reverse ? (x > y ? -1 : 1) : (x < y ? -1 : 1)
+      });
+    }
+    
   }
+
 
  
 
@@ -51,12 +79,6 @@ export class UserListTableComponent {
       this.users = data;
     })
     console.log("user list: ", this.users)
-
-    this.users.forEach(element => {
-      const type= element.usertype
-      console.log("element type: ", type)
-      console.log("type: ", type.id, '-', type.type)
-    });
   }
  
   deleteUser(userid: any){

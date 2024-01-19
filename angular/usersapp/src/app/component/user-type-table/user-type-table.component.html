@@ -15,8 +15,8 @@
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">TypeUser</th>
+                        <th scope="col"*ngFor="let column of tableColumns" (click) = "sortTable(column)">{{ column }} <i class="bi bi-arrow-down-up"></i></th>
+
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>

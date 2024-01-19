@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TypeUser } from '../model/type-user';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +32,13 @@ export class TypeuserService {
 
    public delete(userTypeid: number){
     console.log('url para delete: ', this.usersUrl + '/' + userTypeid)
-    return this.http.delete<void>(this.usersUrl + '/' + userTypeid, {
-      observe: 'response'
-    })
+    return this.http.delete<void>(this.usersUrl + '/' + userTypeid, {observe: 'response'})
+    .pipe(
+      catchError(error => {
+        //console.error('Error en la petición DELETE:', error);
+        alert("No se puede eliminar una categoria porque existen usuarios con esa categoria")
+        return throwError(error); // Reenviar el error al componente
+      })
+    );
    }
 }
