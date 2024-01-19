@@ -38,15 +38,10 @@ export class UserListTableComponent {
  
 
   sortTable(key: any){
-    
-    //console.log("Key: ", key)
+  
     if (key === 'User Type'){
       key = key.split(" ")[1].toLowerCase();
-      //console.log("key type:", key)
-    
-      this.reverse = this.sortKey === key ? !this.reverse : false;
-      this.sortKey = key;
-      //console.log("sortkey: ", this.sortKey)
+      this.reverseOrder(key);
       this.users.sort((a, b) => {
         const x = a.usertype.type;
         const y = b.usertype.type;
@@ -55,9 +50,7 @@ export class UserListTableComponent {
     }
     else{
       key = key.charAt(0).toLowerCase() + key.slice(1);
-      this.reverse = this.sortKey === key ? !this.reverse : false;
-      this.sortKey = key;
-    
+      this.reverseOrder(key);
       this.users.sort((a, b) => {
         const x = a[key as keyof User];
         const y = b[key as keyof User];
@@ -67,14 +60,15 @@ export class UserListTableComponent {
     
   }
 
-
- 
+  reverseOrder(key: any){
+    this.reverse = this.sortKey === key ? !this.reverse : false;
+      this.sortKey = key;
+  }
 
   loadComponent(){
     this.userService.findAll().subscribe(data => {
       this.users = data;
     })
-    //console.log("user list: ", this.users)
   }
  
   deleteUser(userid: any){

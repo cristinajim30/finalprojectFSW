@@ -13,26 +13,32 @@ export class UserProfileComponent {
   title= "User profile";
   id: any;
   userDetail: User;
-  userTypeDetail: string ="";
+  userTypeDetail : TypeUser;
+  //userTypeDetail: string ="";
   load: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router,private userService: UserServiceService){
     this.userDetail = new User();
+    this.userTypeDetail= new TypeUser();
   }
   
-  ngOnInit(){
-    
+   ngOnInit(){
     //retrieve the id value for the param
     this.id = this.route.snapshot.params['id'];
-    this.loadComponent();
+     this.loadComponent();
     this.load = true;
   }
 
-  loadComponent(){
-    this.userService.findById(this.id).subscribe(data => {
+   loadComponent(){
+     this.userService.findById(this.id).subscribe(data => {
       this.userDetail = data;
+      if (this.userDetail.usertype?.type ) {
+        this.userTypeDetail.type = this.userDetail.usertype.type;
+      } else {
+        console.error("undefined property type");
+      }
     })
-    this.userTypeDetail = this.userDetail.usertype.type;
-    //console.log("user detail: ", this.userDetail)
   }
+
+
 }

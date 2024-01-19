@@ -20,7 +20,6 @@ export class UserServiceService {
    }
 
    public findById(id: number): Observable<User>{
-    //console.log('url para userid: ', this.usersUrl + '/' + id)
     return this.http.get<User>(this.usersUrl + '/' + id)
    }
 
@@ -30,7 +29,6 @@ export class UserServiceService {
    }
 
    public edit(user: User){
-    //console.log("metodo edit en el servicio: ", user)
     return this.http.put<User>(this.usersUrl, user, {responseType: 'text' as 'json'})
    }
 

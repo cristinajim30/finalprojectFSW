@@ -63,6 +63,10 @@ ul{
     width: fit-content;
 }
 
+.tabs li a:focus{
+    text-decoration: overline #890e54ff ;
+}
+
 
 .navbar li ul {
     display:none;
