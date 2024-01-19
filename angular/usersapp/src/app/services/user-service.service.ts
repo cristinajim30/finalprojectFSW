@@ -35,7 +35,6 @@ export class UserServiceService {
    }
 
    public delete(userid: number){
-    //console.log('url para delete: ', this.usersUrl + '/' + userid)
     return this.http.delete<void>(this.usersUrl + '/' + userid, {
       observe: 'response'
     })

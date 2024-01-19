@@ -24,14 +24,12 @@ public class TypeUserController {
 
 	@PostMapping("/type")
 	public void addUser(@RequestBody TypeUser typeUser) {
-		System.out.println("-----------BACK-----------metodo post type");
 		typeUserRepository.save(typeUser);
-		System.out.println("-----------BACK-----------type saved");
+		System.out.println("-----------BACK: type saved");
 	}
 
 	@GetMapping("/type")
 	public @ResponseBody Iterable<TypeUser> getAllTypes() {
-		System.out.println("-----------BACK-----------metodo get type");
 		return typeUserRepository.findAll();
 	}
 
@@ -39,8 +37,7 @@ public class TypeUserController {
 	public Optional<TypeUser> getTypeById(@PathVariable int typeId) {
 
 		Optional<TypeUser> theType = typeUserRepository.findById(typeId);
-		System.out.println("-----------BACK-----------metodo get typeById");
-		System.out.println("-----------BACK-----------the typeID: " + typeId);
+		System.out.println("-----------BACK: the typeID: " + typeId);
 		if (theType == null) {
 			throw new RuntimeException("Type id not found - " + typeId);
 		}
@@ -51,23 +48,21 @@ public class TypeUserController {
 	// update existing usertype
 	@PutMapping("/type")
 	public TypeUser updateEmployee(@RequestBody TypeUser theTypeUser) {
-		System.out.println("-----------BACK-----------metodo put type");
+		System.out.println("-----------BACK: metodo put type");
 		return typeUserRepository.save(theTypeUser);
 	}
 
 	// delete usertype
 	@DeleteMapping("/type/{userTypeId}")
 	public void deleteUserType(@PathVariable int userTypeId) {
-		System.out.println("-----------BACK-----------metodo delete type");
 		Optional<TypeUser> tempUserType = typeUserRepository.findById(userTypeId);
 
 		// throw exception if null
-
 		if (tempUserType == null) {
 			throw new RuntimeException("UserType id not found - " + userTypeId);
 		}
 
 		typeUserRepository.deleteById(userTypeId);
-		System.out.println("-----------BACK-----Deleted userType id - " + userTypeId);
+		System.out.println("-----------BACK: Deleted userType id - " + userTypeId);
 	}
 }

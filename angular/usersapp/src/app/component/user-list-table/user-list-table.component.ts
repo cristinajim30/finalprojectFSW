@@ -74,7 +74,7 @@ export class UserListTableComponent {
     this.userService.findAll().subscribe(data => {
       this.users = data;
     })
-    console.log("user list: ", this.users)
+    //console.log("user list: ", this.users)
   }
  
   deleteUser(userid: any){
