@@ -7,6 +7,7 @@ import { UserlistComponent } from './component/userlist/userlist.component';
 import { TypeuserComponent } from './component/typeuser/typeuser.component';
 import { UserTypeTableComponent } from './component/user-type-table/user-type-table.component';
 import { UsertypeFormComponent } from './component/usertype-form/usertype-form.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'users', component: UserListTableComponent},
   {path: 'adduser', component: UserFormComponent},
   { path: 'edituser/:id', component: UserFormComponent },
+  {path: 'viewuser/:id', component: UserProfileComponent},
   {path:'userstype', component:UserTypeTableComponent},
   {path: 'addusertype', component:UsertypeFormComponent},
   {path: 'editusertype/:id', component:UsertypeFormComponent},

@@ -10,7 +10,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './usertype-form.component.css'
 })
 export class UsertypeFormComponent {
-  title="Add / Edit an user type";
 
   id?: any;
   isEditMode?: boolean;
@@ -32,7 +31,7 @@ export class UsertypeFormComponent {
     if (this.isEditMode) {
       //console.log("seleccionado antes: ", this.usertypeselected)
       this.validationsForm();
-      console.log("---Edit mode---id: ", this.id)
+      //console.log("---Edit mode---id: ", this.id)
       this.userTypeService.findUserTypeById(this.id).subscribe(data => {
         // fill inputs of user
         this.typeForm.patchValue(data);
@@ -41,7 +40,7 @@ export class UsertypeFormComponent {
         this.typeForm.patchValue({
           type: data.type
         })
-        console.log("seleccionado dsp: ", this.typeForm.get('type')?.value)
+        //console.log("seleccionado dsp: ", this.typeForm.get('type')?.value)
         this.loadUsersType();
       });
 
@@ -56,8 +55,8 @@ export class UsertypeFormComponent {
 
   validateUserType(){
     if (this.typeForm.valid) {
-      console.log("valid: ", this.typeForm.value);
-      console.log("type: ", this.typeForm.get('type')?.value);
+      //console.log("valid: ", this.typeForm.value);
+      //console.log("type: ", this.typeForm.get('type')?.value);
       let typenew = new TypeUser();
       typenew.type=this.typeForm.get('type')?.value;
       
@@ -80,7 +79,7 @@ export class UsertypeFormComponent {
     this.userTypeService.findUsersType().subscribe(data => {
       this.userTypeList = data;
     })
-    console.log("list type: ", this.userTypeList)
+    //console.log("list type: ", this.userTypeList)
   }
 
   createUserType(typenew : TypeUser){
@@ -88,12 +87,10 @@ export class UsertypeFormComponent {
       response => {
         this.typeForm.reset();
         this.isSucessfull = true;
-      console.log('Solicitud POST exitosa:', response);
-      // Manejar la respuesta si es necesario
+      //console.log('Solicitud POST exitosa:', response);
    },
    error => {
-      console.error('Error al guardar usuario:', error);
-      // Manejar el error si es necesario
+      console.error('Error saving user:', error);
    });
   }
 
@@ -103,10 +100,10 @@ export class UsertypeFormComponent {
       response => {
         this.typeForm.reset();
         this.isSucessfull = true;
-        console.log('Solicitud POST update exitosa:', response);
+        //console.log('Solicitud POST update exitosa:', response);
       },
       error => {
-         console.error('Error to update usertype:', error);
+         console.error('Error updating usertype:', error);
       });
   }
 

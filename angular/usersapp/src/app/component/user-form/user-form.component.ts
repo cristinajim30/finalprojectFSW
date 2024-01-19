@@ -37,7 +37,7 @@ export class UserFormComponent {
     if (this.isEditMode) {
       //console.log("seleccionado antes: ", this.usertypeselected)
       this.validationsForm();
-      console.log("---Edit mode---id: ", this.id)
+      //console.log("---Edit mode---id: ", this.id)
       this.userService.findById(this.id).subscribe(user => {
         // fill inputs of user
         this.userForm.patchValue(user);
@@ -53,7 +53,7 @@ export class UserFormComponent {
     }
   }
   validationsForm(){
-    console.log("validations form method")
+    //console.log("validations form method")
     this.userForm = new FormGroup({
       name: new FormControl('', Validators.required),
       firstname: new FormControl('', Validators.required),
@@ -66,20 +66,18 @@ export class UserFormComponent {
     this.userTypeService.findUsersType().subscribe(data => {
       this.userTypeList = data;
     })
-    console.log("list type: ", this.userTypeList)
+    //console.log("list type: ", this.userTypeList)
   }
 
-  onSubmit() {
-    
-    this.validateUser()
-    
+  onSubmit() { 
+    this.validateUser() 
   }
 
 
   validateUser(){
-    console.log("isValid: ", this.userForm.valid)
+    //console.log("isValid: ", this.userForm.valid)
     if (this.userForm.valid) {
-      console.log("valid: ", this.userForm.value);
+      //console.log("valid: ", this.userForm.value);
       
       let usernew = new User();
       let typenew = new TypeUser();
@@ -89,10 +87,10 @@ export class UserFormComponent {
 
       //if the value is not empty or undefined
       if (this.userForm.get('usertype')?.value ) {
-        console.log("dentro if")
+        //console.log("dentro if")
         this.userTypeList.forEach(element => {
           if(element.type === this.userForm.get('usertype')?.value){
-            console.log("coincide: ", element.type)
+            //console.log("coincide: ", element.type)
             typenew.id = element.id;
             typenew.type = element.type;
           }
@@ -100,7 +98,7 @@ export class UserFormComponent {
 
         usernew.usertype = typenew;
       } else {
-        console.error("El control del formulario o su valor es nulo.");
+        console.error("The form control or its value is null.");
       }
       
       if (this.isEditMode) {
@@ -117,10 +115,10 @@ export class UserFormComponent {
       response => {
         this.userForm.reset();
         this.isSucessfull = true;
-        console.log('Solicitud POST exitosa:', response);
+        //console.log('Solicitud POST exitosa:', response);
       },
       error => {
-         console.error('Error al guardar usuario:', error);
+         console.error('Error saving user:', error);
       });
   }
 
@@ -130,17 +128,17 @@ export class UserFormComponent {
       response => {
         this.userForm.reset();
         this.isSucessfull = true;
-        console.log('Solicitud POST editar exitosa:', response);
+        //console.log('Solicitud POST editar exitosa:', response);
       },
       error => {
-         console.error('Error al editar usuario:', error);
+         console.error('Error updating user:', error);
       });
   }
  
  
   gotoUserList(){
     this.router.navigate(['/users']);
-    console.log('final method gotoUserList');
+    //console.log('final method gotoUserList');
   }
 
 }

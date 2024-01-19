@@ -29,40 +29,36 @@ export class UserListTableComponent {
  
 
   editUser(id: any){
-    console.log("method editUser id-: ", id)
     this.router.navigate(['/edituser', id]);
-    console.log("end method editUser")
   }
 
+  viewUser(id:any){
+    this.router.navigate(['/viewuser', id]);
+  }
  
 
   sortTable(key: any){
     
-    console.log("Key: ", key)
+    //console.log("Key: ", key)
     if (key === 'User Type'){
       key = key.split(" ")[1].toLowerCase();
-      console.log("key type:", key)
+      //console.log("key type:", key)
     
       this.reverse = this.sortKey === key ? !this.reverse : false;
       this.sortKey = key;
-      console.log("sortkey: ", this.sortKey)
+      //console.log("sortkey: ", this.sortKey)
       this.users.sort((a, b) => {
         const x = a.usertype.type;
         const y = b.usertype.type;
-        console.log("x: ", x)
-        console.log("y: ", y)
         return this.reverse ? (x > y ? -1 : 1) : (x < y ? -1 : 1)
       });
     }
     else{
-      console.log("entra else")
       key = key.charAt(0).toLowerCase() + key.slice(1);
       this.reverse = this.sortKey === key ? !this.reverse : false;
       this.sortKey = key;
     
       this.users.sort((a, b) => {
-        console.log("a ", a)
-        console.log("b ", b)
         const x = a[key as keyof User];
         const y = b[key as keyof User];
         return this.reverse ? (x > y ? -1 : 1) : (x < y ? -1 : 1)
