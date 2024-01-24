@@ -1,8 +1,9 @@
-package com.example.demo;
+package com.example.demo.controller;
 
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,53 +15,56 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entity.User;
+import com.example.demo.services.UserService;
+
 @RestController
 @RequestMapping("api")
 @CrossOrigin(origins = "http://localhost:4200")
-public class MainController {
+public class UserController {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 
 	@PostMapping("/users")
 	public void addUser(@RequestBody User user) {
-		userRepository.save(user);
+		userService.createUser(user);
 	}
 
 	@GetMapping("/users")
 	public @ResponseBody Iterable<User> getAllUsers() {
-		return userRepository.findAll();
+		return userService.findAllUsers();
 	}
 
 	@GetMapping("/users/{userId}")
-	public Optional<User> getUserById(@PathVariable int userId) {
+	public ResponseEntity<User> getUserById(@PathVariable int userId) {
 
-		Optional<User> theUser = userRepository.findById(userId);
-		if (theUser == null) {
-			throw new RuntimeException("User id not found - " + userId);
+		User user = userService.findUserById(userId);
+
+		if (user != null) {
+			return ResponseEntity.ok(user);
+		} else {
+			return ResponseEntity.notFound().build();
 		}
 
-		return theUser;
 	}
 
 	// update existing user
 	@PutMapping("/users")
 	public User updateUser(@RequestBody User theUser) {
-		return userRepository.save(theUser);
+		return userService.updateUser(theUser);
 	}
 
 	// delete user
 	@DeleteMapping("/users/{userId}")
-	public void deleteUser(@PathVariable int userId) {
-		Optional<User> tempUser = userRepository.findById(userId);
+	public ResponseEntity deleteUser(@PathVariable int userId) {
+		Optional<User> user = userService.deleteUser(userId);
 
-		// throw exception if null
-
-		if (tempUser == null) {
-			throw new RuntimeException("User id not found - " + userId);
+		if (user != null) {
+			return ResponseEntity.ok(user);
+		} else {
+			return ResponseEntity.notFound().build();
 		}
-
-		userRepository.deleteById(userId);
 
 	}
 
