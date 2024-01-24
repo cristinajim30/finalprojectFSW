@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TypeuserService } from '../../services/typeuser.service';
 import { TypeUser } from '../../model/type-user';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-usertype-form',
@@ -17,9 +17,9 @@ export class UsertypeFormComponent {
   typeForm!: FormGroup;
   typeUser: TypeUser; 
   userTypeList: TypeUser[] = [];
-  isSucessfull: boolean = false;
+  //isSucessfull: boolean = false;
 
-  constructor(private route: ActivatedRoute, private userTypeService: TypeuserService){
+  constructor(private route: ActivatedRoute, private router: Router, private userTypeService: TypeuserService){
     this.typeUser = new TypeUser();
   }
   ngOnInit(): void {
@@ -78,8 +78,9 @@ export class UsertypeFormComponent {
   createUserType(typenew : TypeUser){
     this.userTypeService.save(typenew).subscribe(
       response => {
-        this.typeForm.reset();
-        this.isSucessfull = true;
+        //this.typeForm.reset();
+        //this.isSucessfull = true;
+        this.gotoTypeUserList();
    },
    error => {
       console.error('Error saving user:', error);
@@ -90,12 +91,17 @@ export class UsertypeFormComponent {
     typenew.id = this.id;
     this.userTypeService.edit(typenew).subscribe(
       response => {
-        this.typeForm.reset();
-        this.isSucessfull = true;
+        //this.typeForm.reset();
+        //this.isSucessfull = true;
+        this.gotoTypeUserList();
       },
       error => {
          console.error('Error updating usertype:', error);
       });
+  }
+
+  gotoTypeUserList(){
+    this.router.navigate(['/userstype']);
   }
 
   

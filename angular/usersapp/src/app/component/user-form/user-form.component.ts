@@ -100,20 +100,26 @@ export class UserFormComponent {
   createUser(usernew: User){
     this.userService.save(usernew).subscribe(
       response => {
-        this.userForm.reset();
-        this.isSucessfull = true;
+        //this.userForm.reset();
+        //this.isSucessfull = true;
+        this.gotoUserList()
       },
       error => {
          console.error('Error saving user:', error);
       });
   }
 
+  gotoUserList(){
+    this.router.navigate(['/users']);
+  }
+
   updateUser(usernew: User){
     usernew.id = this.id;
     this.userService.edit(usernew).subscribe(
       response => {
-        this.userForm.reset();
-        this.isSucessfull = true;
+        //this.userForm.reset();
+        //this.isSucessfull = true;
+        this.gotoUserList()
       },
       error => {
          console.error('Error updating user:', error);
